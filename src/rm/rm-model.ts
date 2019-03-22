@@ -6,22 +6,30 @@ export namespace openEHR {
     export namespace BasicPackage {
       export class DvBoolean extends DataValue {
         Value?: boolean;
-
-      }export class DvIdentifier extends DataValue{
+      }
+      export class DvIdentifier extends DataValue {
         Issuer?: string;
         Assigner?: string;
         Id?: string;
         Type?: string;
-        ToString():string {
-          return "Issuer: " + this.Issuer + ", assigner: " + this.Assigner + ", id: " + this.Id + ", type: " + this.Type;
+        ToString(): string {
+          return (
+            "Issuer: " +
+            this.Issuer +
+            ", assigner: " +
+            this.Assigner +
+            ", id: " +
+            this.Id +
+            ", type: " +
+            this.Type
+          );
         }
-
       }
     }
 
     export namespace TextPackage {
       export class DvText extends DataValue {
-        constructor(private val?: string){
+        constructor(private val?: string) {
           super();
           this.Value = val;
         }
@@ -58,10 +66,12 @@ export namespace openEHR {
         DefiningCode?: DvCodePhrase;
       }
       export class DvCodePhrase {
-        constructor(codeString?: string, terminologyId?: string){
+        constructor(codeString?: string, terminologyId?: string) {
           this.CodeString = codeString;
-          if(terminologyId != null){
-            this.TerminologyId = new openEHR.RM.Support.IdentificationPackage.TerminologyId(terminologyId);
+          if (terminologyId != null) {
+            this.TerminologyId = new openEHR.RM.Support.IdentificationPackage.TerminologyId(
+              terminologyId
+            );
           }
         }
         CodeString?: string;
@@ -77,8 +87,8 @@ export namespace openEHR {
           Value?: string;
         }
         export class TerminologyId extends ObjectId {
-          Value?:string;
-          constructor(terminologyId?: string){
+          Value?: string;
+          constructor(terminologyId?: string) {
             super();
             this.Value = terminologyId;
           }
@@ -86,11 +96,6 @@ export namespace openEHR {
       }
     }
     export namespace QuantityPackage {
-      export class DvCount extends DataValue {}
-      export abstract class DvOrdered<T> extends DataValue {
-        NormalRange?: DvInterval<T>;
-        NormalStatus?: openEHR.RM.TextPackage.DvCodePhrase;
-      }
       export abstract class DvQuantified<T> extends DvOrdered<T> {
         /**
          * Numeric value of the quantity in canonical (i.e. single value) form.
@@ -111,13 +116,6 @@ export namespace openEHR {
         */
         MagnitudeStatus?: string;
       }
-      export abstract class DvAbsoluteQuantity<T, TA> extends DvQuantified<T> {
-        /**
-         * Accuracy of measurement, expressed as a half-range value of the diff type for this quantity (i.e. an accuracy of x means x).
-         * A Void (i.e. null) value means accuracy not known.
-         */
-        Accuracy?: TA;
-      }
       export abstract class DvAmount<T> extends DvQuantified<T> {
         /**
          * Accuracy of measurement, expressed either as a half-range percent value (accuracy_is_percent = True) or a half-range quantity.
@@ -130,6 +128,20 @@ export namespace openEHR {
          */
         IsAccuracyPercent?: boolean;
       }
+
+      export abstract class DvOrdered<T> extends DataValue {
+        NormalRange?: DvInterval<T>;
+        NormalStatus?: openEHR.RM.TextPackage.DvCodePhrase;
+      }
+
+      export abstract class DvAbsoluteQuantity<T, TA> extends DvQuantified<T> {
+        /**
+         * Accuracy of measurement, expressed as a half-range value of the diff type for this quantity (i.e. an accuracy of x means x).
+         * A Void (i.e. null) value means accuracy not known.
+         */
+        Accuracy?: TA;
+      }
+
       export class DvInterval<T> extends DataValue {
         Lower?: T;
         Upper?: T;
@@ -140,8 +152,15 @@ export namespace openEHR {
         Precision?: number;
       }
       export class DvOrdinal extends DvOrdered<DvOrdinal> {
-        Value?: number;
-        Symbol?: openEHR.RM.TextPackage.DvCodedText;
+        public Symbol?: openEHR.RM.TextPackage.DvCodedText;
+        constructor(public Value?: number) {
+          super();
+        }
+      }
+      export class DvCount extends DvAmount<Number> {
+        constructor(public Magnitude?: number) {
+          super();
+        }
       }
       export class DvProportion extends DvAmount<DvProportion> {
         Magnitude?: number;
