@@ -1,7 +1,7 @@
 export namespace openEHR {
   export namespace RM {
     export abstract class DataValue {
-      value?: string;
+      private value?: string;
     }
     export namespace BasicPackage {
       export class DvBoolean extends DataValue {
@@ -63,9 +63,28 @@ export namespace openEHR {
         Unknown
       }
       export class DvCodedText extends DvText {
-        DefiningCode?: DvCodePhrase;
+        /**
+         *
+         * @param codeString "terminologyId::codeId|value"
+         */
+        static Parse(codeString: string): DvCodedText {
+          return new DvCodedText();
+        }
+        constructor(
+          private theValue?: string,
+          public DefiningCode?: DvCodePhrase
+        ) {
+          super(theValue);
+        }
       }
       export class DvCodePhrase {
+        /**
+         *
+         * @param termCode terminologyId::codeString
+         */
+        static Parse(termCode: string): DvCodePhrase {
+          return new DvCodePhrase();
+        }
         constructor(codeString?: string, terminologyId?: string) {
           this.CodeString = codeString;
           if (terminologyId != null) {
