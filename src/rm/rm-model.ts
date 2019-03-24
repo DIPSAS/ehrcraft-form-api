@@ -26,7 +26,50 @@ export namespace openEHR {
         }
       }
     }
-
+    export namespace Common {
+      export abstract class RmType {}
+      export namespace ArchetypedPackage {
+        export abstract class Pathable {}
+        /**
+         * https://specifications.openehr.org/releases/RM/latest/common.html#_locatable_class
+         */
+        export abstract class Locatable extends Pathable {
+          constructor(
+            public name: openEHR.RM.TextPackage.DvText,
+            public archetype_node_id: string,
+            public uid?: openEHR.RM.Support.IdentificationPackage.UidBasedId,
+            /**
+             * Links to other archetyped structures (data whose root object inherits from ARCHETYPED, such as ENTRY, SECTION and so on).
+             * Links may be to structures in other compositions.
+             **/
+            public links?: openEHR.RM.Common.ArchetypedPackage.Link[]
+          ) {
+            super();
+          }
+        }
+        export class Link extends RmType {
+          constructor(
+            /**
+             * Used to describe the relationship, usually in clinical terms, such as in response to (the relationship between test results and an order), follow-up to and so on.
+             * Such relationships can represent any clinically meaningful connection between pieces of information.
+             * Values for meaning include those described in Annex C, ENV 13606 pt 2 under the categories of generic , documenting and reporting , organisational , clinical , circumstancial , and view management .
+             */
+            public meaning?: openEHR.RM.TextPackage.DvText,
+            /**
+             * The type attribute is used to indicate a clinical or domain-level meaning for the kind of link, for example problem or issue .
+             * If type values are designed appropriately, they can be used by the requestor of EHR extracts to categorise links which must be followed and which can be broken when the extract is created.
+             */
+            public type?: openEHR.RM.TextPackage.DvText,
+            /**
+             * The logical to object in the link relation, as per the linguistic sense of the meaning attribute.
+             */
+            public target?: openEHR.RM.UriPackage.DvEhrUri
+          ) {
+            super();
+          }
+        }
+      }
+    }
     export namespace TextPackage {
       export class DvText extends DataValue {
         constructor(private val?: string) {
@@ -105,6 +148,9 @@ export namespace openEHR {
            */
           Value?: string;
         }
+        export abstract class UidBasedId {
+          constructor(public value?: string) {}
+        }
         export class TerminologyId extends ObjectId {
           Value?: string;
           constructor(terminologyId?: string) {
@@ -115,6 +161,11 @@ export namespace openEHR {
       }
     }
     export namespace QuantityPackage {
+      export abstract class DvOrdered<T> extends DataValue {
+        NormalRange?: DvInterval<T>;
+        NormalStatus?: openEHR.RM.TextPackage.DvCodePhrase;
+      }
+
       export abstract class DvQuantified<T> extends DvOrdered<T> {
         /**
          * Numeric value of the quantity in canonical (i.e. single value) form.
@@ -146,11 +197,6 @@ export namespace openEHR {
          * If True, indicates that when this object was created, accuracy was recorded as a percent value; if False, as an absolute quantity value.
          */
         IsAccuracyPercent?: boolean;
-      }
-
-      export abstract class DvOrdered<T> extends DataValue {
-        NormalRange?: DvInterval<T>;
-        NormalStatus?: openEHR.RM.TextPackage.DvCodePhrase;
       }
 
       export abstract class DvAbsoluteQuantity<T, TA> extends DvQuantified<T> {
@@ -263,7 +309,7 @@ export namespace openEHR {
         Value?: string;
       }
       export class DvEhrUri extends DvUri {}
-      enum DvEhrUriType {
+      export enum DvEhrUriType {
         Unknown = 0,
         RelativeCompositionUri = 1
       }
