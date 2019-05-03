@@ -53,14 +53,14 @@ export type CallbackType = (
   parent?: Container
 ) => Function;
 export type EventType =
+  "OnFormInitialized"
   | "OnChanged"
-  | "OnRemoved"
   | "OnChildAdded"
   | "OnChildRemoved";
 
 export class MockApi implements API {
-  private IdCallbacks: { [key: string]: ListenerCallback } = {};
-  private FieldValues: { [key: string]: any } = {};
+  private IdCallbacks: {[key: string]: ListenerCallback} = {};
+  private FieldValues: {[key: string]: any} = {};
 
   constructor() {}
 
