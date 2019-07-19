@@ -89,10 +89,10 @@ export class MockApi implements API {
   disableField(formId: string, parent?: Container) {
     console.log("disableField");
   }
-  getFieldValue(formId: string) {
+  getFieldValue(formId: string, parent?: Container) {
     return this.FieldValues[formId];
   }
-  setFieldValue(formId: string, value: any) {
+  setFieldValue(formId: string, value: any, parent?: Container) {
     this.FieldValues[formId] = value;
     let callback = this.IdCallbacks[formId];
     if (callback) {
@@ -102,14 +102,15 @@ export class MockApi implements API {
       console.log("noCallBackDefined for formId" + formId);
     }
   }
-  addField(formId: string) {
+  addField(formId: string): Container {
     console.log("addField");
+    return null;
   }
   removeField(field: Object) {
     console.log("removeField");
   }
-  getFields(formId: string, parent?: Container) {
-    return {};
+  getFields(formId: string, parent?: Container): any[] {
+    return [];
   }
   setOccurrences(formId: string, occurences: string, parent?: Container) {
     console.log("setOccurrences");

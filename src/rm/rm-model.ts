@@ -108,7 +108,7 @@ export namespace openEHR {
       export class DvCodedText extends DvText {
         /**
          *
-         * @param codeString "terminologyId::codeId|value"
+         * @param codeString "terminologyId::codeId|value|"
          */
         static Parse(codeString: string): DvCodedText {
           return new DvCodedText();
@@ -247,7 +247,7 @@ export namespace openEHR {
         .DvAbsoluteQuantity<T, TA> {}
       export class DvDuration extends openEHR.RM.QuantityPackage.DvAmount<
         DvDuration
-      > {
+        > {
         /** ISO8601 duration */
         Value?: string;
         Magnitude?: number;
