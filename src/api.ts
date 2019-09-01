@@ -1,3 +1,4 @@
+import {API} from './api';
 export interface API {
   addListener(
     formId: string,
@@ -52,12 +53,19 @@ export type CallbackType = (
   value?: any,
   parent?: Container
 ) => Function;
+/**
+ * The type of events supported by the API. This is used when setting up addListener functions.
+ */
 export type EventType =
   "OnFormInitialized"
   | "OnChanged"
   | "OnChildAdded"
   | "OnChildRemoved";
 
+/**
+ * MockAPI is a "mock" implemnetation of the API to be able to instantiate API in your Typescripts. 
+ * The implemenation will not be used since the FormRenderer takes care of the runtime in Forms. 
+ */
 export class MockApi implements API {
   private IdCallbacks: {[key: string]: ListenerCallback} = {};
   private FieldValues: {[key: string]: any} = {};
