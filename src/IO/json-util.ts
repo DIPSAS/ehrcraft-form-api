@@ -7,7 +7,7 @@ import * as _ from "lodash";
 export function toJson(obj: any): string {
   return JSON.stringify(camelCaseKeys(obj), replacer, 1);
 }
-function replacer(key, value) {
+function replacer(key: string, value: any[] | null) {
   if (key == "val") return undefined;
   else if (_.isArray(value)) {
     if (value === null) {
@@ -20,7 +20,8 @@ function replacer(key, value) {
     }
   } else return value;
 }
-function camelCaseKeys(obj: any) {
+
+function camelCaseKeys(obj: any): any {
   if (!_.isObject(obj)) {
     return obj;
   } else if (_.isArray(obj)) {

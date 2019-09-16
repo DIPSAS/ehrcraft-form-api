@@ -1,20 +1,16 @@
 {
-    "compilerOptions": {
-      "target": "es2015",
-      "module": "commonjs",
-      "outDir": "dist", 
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "experimentalDecorators": true, 
-      "emitDecoratorMetadata": true
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "strict": true /* Enable all strict type-checking options. */,
+    "emitDecoratorMetadata": true
+  },
 
-    
-    },
-    
-    "include": [
-      "src/**/*.ts"
-    ],
-    "exclude": [
-      "node_modules"
-    ]
-  }
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}

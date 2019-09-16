@@ -6,23 +6,12 @@ export interface CTX {
 }
 export class MockCTX implements CTX {
   constructor(
-    private readonly?: boolean,
-    private newVersion?: boolean,
-    private myFormMode?: FormMode,
-    private myPreferredLanguage?: string
+    private readonly: boolean = false,
+    private newVersion: boolean = false,
+    private myFormMode: FormMode = FormMode.Default,
+    private myPreferredLanguage: string = "no"
   ) {
-    if (typeof readonly == "undefined") {
-      this.readonly = false;
-    }
-    if (typeof newVersion == "undefined") {
-      this.newVersion = false;
-    }
-    if (typeof myFormMode == "undefined") {
-      this.myFormMode = FormMode.Default;
-    }
-    if (typeof myPreferredLanguage == "undefined") {
-      this.myPreferredLanguage = "nb";
-    }
+
   }
   isReadonly(): boolean {
     return this.readonly;

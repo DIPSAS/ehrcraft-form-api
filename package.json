@@ -1,19 +1,14 @@
 {
   "name": "ehrcraft-form-api",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "API/SDK for EHR Craft Forms",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "tsc -p ./ --outDir dist/",
     "test": "tsc"
   },
-  "files": [
-    "dist/**/**",
-    "src/**/**",
-    "test/**/**",
-    "tsconfig.json",
-    "tslint.json"
-  ],
   "keywords": [
     "openEHR",
     "DIPS",
@@ -22,12 +17,16 @@
   ],
   "author": "Bjørn Næss <bna@dips.no>",
   "license": "(MIT OR Apache-2.0)",
-  "devDependencies": {
-    "eslint": "^5.9.0",
-    "tslint": "^5.11.0",
-    "@types/node": "^10.12.10",
-    "typescript": "^3.1.6",
-    "ts-node": "^7.0.1"
+  "repository": {
+    "type": "git",
+    "url": "http://tfgit/ehrcraft/ehrcraft-form-jsapi.git"
   },
-  "dependencies": {}
+  "devDependencies": {
+    "@types/lodash": "^4.14.138",
+    "@types/node": "^10.14.18",
+    "eslint": "^5.16.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  }
 }

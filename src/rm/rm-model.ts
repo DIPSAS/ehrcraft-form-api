@@ -106,16 +106,18 @@ export namespace openEHR {
         Unknown
       }
       export class DvCodedText extends DvText {
+        public DefiningCode: DvCodePhrase = new DvCodePhrase();
         /**
          *
          * @param codeString "terminologyId::codeId|value|"
          */
         static Parse(codeString: string): DvCodedText {
-          return new DvCodedText();
+          // return dummy value
+          return new DvCodedText(codeString);
         }
         constructor(
           private theValue?: string,
-          public DefiningCode?: DvCodePhrase
+
         ) {
           super(theValue);
         }
@@ -128,7 +130,7 @@ export namespace openEHR {
         static Parse(termCode: string): DvCodePhrase {
           return new DvCodePhrase();
         }
-        constructor(codeString?: string, terminologyId?: string) {
+        constructor(public codeString?: string, public terminologyId?: string) {
           this.CodeString = codeString;
           if (terminologyId != null) {
             this.TerminologyId = new openEHR.RM.Support.IdentificationPackage.TerminologyId(
@@ -244,7 +246,15 @@ export namespace openEHR {
     }
     export namespace DateTimePackage {
       abstract class DvTemporal<T, TA> extends openEHR.RM.QuantityPackage
-        .DvAbsoluteQuantity<T, TA> {}
+        .DvAbsoluteQuantity<T, TA> {
+        /**
+         * Since the openEHR C# library has constructor override - we have to make it a bit more specific here 
+         * @param value the value for the subclass 
+         */
+        constructor(value?: any) {
+          super();
+        }
+      }
       export class DvDuration extends openEHR.RM.QuantityPackage.DvAmount<
         DvDuration
         > {
@@ -265,6 +275,9 @@ export namespace openEHR {
       export class DvDateTime extends DvTemporal<DvDateTime, DvDuration> {
         Value?: string;
         Magnitude?: number;
+        constructor(value?: string | Date) {
+          super(value);
+        }
       }
       export class DvTime extends DvTemporal<DvTime, DvDuration> {
         Value?: string;

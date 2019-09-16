@@ -1,4 +1,4 @@
-import {API} from './api';
+// import {API} from './api';
 export interface API {
   addListener(
     formId: string,
@@ -105,14 +105,26 @@ export class MockApi implements API {
     let callback = this.IdCallbacks[formId];
     if (callback) {
       console.log("setFieldValue:" + formId + ", value= " + value);
-      callback.call(formId, value, null);
+      callback.call(formId, value, {});
     } else {
       console.log("noCallBackDefined for formId" + formId);
     }
   }
   addField(formId: string): Container {
-    console.log("addField");
-    return null;
+    console.log("addField - returning empty Container");
+    return {
+      FormId: "",
+      GetAqlPath: "",
+      Name: "",
+      RmModel: {
+        FormId: "",
+        Name: "",
+        RmName: "",
+        RmType: ""
+      },
+      RmName: "",
+      RmType: ""
+    };
   }
   removeField(field: Object) {
     console.log("removeField");
