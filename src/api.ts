@@ -12,9 +12,18 @@ export interface API {
   resetField(formId: string, parent?: Container): void;
   enableField(formId: string, parent?: Container): void;
   disableField(formId: string, parent?: Container): void;
-  getFieldValue(formId: string): any;
-  setFieldValue(formId: string, value: any): void;
-  addField(formId: string): void;
+  getFieldValue(formId: string, parent?: Container): any;
+  setFieldValue(formId: string, value: any, parent?: Container): void;
+  /**
+   *
+   * @param formId addField(id): id must be a string value (formId or name).
+   * @returns a container if the formId is path to a container
+   */
+  addField(formId: string): any;
+  /**
+   *
+   * @param field field must be an object argument
+   */
   removeField(field: Object): void;
   getFields(formId: string, parent?: Container): any;
 
@@ -57,18 +66,18 @@ export type CallbackType = (
  * The type of events supported by the API. This is used when setting up addListener functions.
  */
 export type EventType =
-  "OnFormInitialized"
+  | "OnFormInitialized"
   | "OnChanged"
   | "OnChildAdded"
   | "OnChildRemoved";
 
 /**
- * MockAPI is a "mock" implemnetation of the API to be able to instantiate API in your Typescripts. 
- * The implemenation will not be used since the FormRenderer takes care of the runtime in Forms. 
+ * MockAPI is a "mock" implemnetation of the API to be able to instantiate API in your Typescripts.
+ * The implemenation will not be used since the FormRenderer takes care of the runtime in Forms.
  */
 export class MockApi implements API {
-  private IdCallbacks: {[key: string]: ListenerCallback} = {};
-  private FieldValues: {[key: string]: any} = {};
+  private IdCallbacks: { [key: string]: ListenerCallback } = {};
+  private FieldValues: { [key: string]: any } = {};
 
   constructor() {}
 
@@ -120,10 +129,10 @@ export class MockApi implements API {
         FormId: "",
         Name: "",
         RmName: "",
-        RmType: ""
+        RmType: "",
       },
       RmName: "",
-      RmType: ""
+      RmType: "",
     };
   }
   removeField(field: Object) {

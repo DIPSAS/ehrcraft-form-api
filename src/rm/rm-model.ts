@@ -2,6 +2,9 @@ export namespace openEHR {
   export namespace RM {
     export abstract class DataValue {
       private value?: string;
+      public ToString(): string {
+        return this.value + "";
+      }
     }
     export namespace BasicPackage {
       export class DvBoolean extends DataValue {
@@ -103,7 +106,7 @@ export namespace openEHR {
         /// <summary>
         /// The kind of mapping is unknown.
         /// </summary>
-        Unknown
+        Unknown,
       }
       export class DvCodedText extends DvText {
         public DefiningCode: DvCodePhrase = new DvCodePhrase();
@@ -115,10 +118,7 @@ export namespace openEHR {
           // return dummy value
           return new DvCodedText(codeString);
         }
-        constructor(
-          private theValue?: string,
-
-        ) {
+        constructor(private theValue?: string) {
           super(theValue);
         }
       }
@@ -241,23 +241,22 @@ export namespace openEHR {
         Unitary = 1,
         Percent = 2,
         Fraction = 3,
-        IntegerFraction = 4
+        IntegerFraction = 4,
       }
     }
     export namespace DateTimePackage {
       abstract class DvTemporal<T, TA> extends openEHR.RM.QuantityPackage
         .DvAbsoluteQuantity<T, TA> {
         /**
-         * Since the openEHR C# library has constructor override - we have to make it a bit more specific here 
-         * @param value the value for the subclass 
+         * Since the openEHR C# library has constructor override - we have to make it a bit more specific here
+         * @param value the value for the subclass
          */
         constructor(value?: any) {
           super();
         }
       }
-      export class DvDuration extends openEHR.RM.QuantityPackage.DvAmount<
-        DvDuration
-        > {
+      export class DvDuration extends openEHR.RM.QuantityPackage
+        .DvAmount<DvDuration> {
         /** ISO8601 duration */
         Value?: string;
         Magnitude?: number;
@@ -324,7 +323,7 @@ export namespace openEHR {
       export class DvEhrUri extends DvUri {}
       export enum DvEhrUriType {
         Unknown = 0,
-        RelativeCompositionUri = 1
+        RelativeCompositionUri = 1,
       }
     }
   }
