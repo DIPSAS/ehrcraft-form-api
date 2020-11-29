@@ -4,37 +4,56 @@ This is the definitions of the JS classes used within the EHR Craft Form rendere
 
 Warning: The library is in early beta and intended for internal use.
 
-There is a separate library to compile the scripts. See https://www.npmjs.com/package/ehrcraft-script-compilator
-
 ## Usage
 
-The script engine only runs vanilla JS, thus we need to remove the references to this library when running insinde the form renderer. There is a separate compiler which takes the typescript source and compile into a js file which is the one to embed in the form definition.
+The script engine only runs vanilla JS, thus we need to remove the references to this library when running insinde the form renderer.
 
-The trick is to tell this compiler where your logic starts and ends this is done by the comment keywords: `// Start` and `// End`. Below is an example.
+The following typescript is a boilerplate to get started.
 
 ```
-import {API, MockApi, Container} from "ehrcraft-form-api/dist/api";
-import {HTTP, MockHTTP} from "ehrcraft-form-api/dist/http";
-import {CTX, MockCTX, FormMode} from "ehrcraft-form-api/dist/ctx";
-import {openEHR} from "ehrcraft-form-api/dist/rm/rm-model";
-import DvOrdinal = openEHR.RM.QuantityPackage.DvOrdinal;
-import DvText = openEHR.RM.TextPackage.DvText;
-import DvCodedText = openEHR.RM.TextPackage.DvCodedText;
-import DvCodePhrase = openEHR.RM.TextPackage.DvCodePhrase;
-import DvQuantity = openEHR.RM.QuantityPackage.DvQuantity;
-import DvCount = openEHR.RM.QuantityPackage.DvCount;
-import DvMultimedia = openEHR.RM.EncapsulatedPackage.DvMultimedia;
-import DvDate = openEHR.RM.DateTimePackage.DvDate;
-import DvDateTime = openEHR.RM.DateTimePackage.DvDateTime;
-const http = new MockHTTP();
-const api = new MockApi();
-const ctx = new MockCTX();
+import { API, Container } from "ehrcraft-form-api/dist/api";
+import { DvCodedText, DvDateTime, DvQuantity } from "ehrcraft-form-api";
 
+function main(api: API) {
+  console.log("Your main function was invoked");
+  const t = new DvCodedText();
+    t.Value = "Test";
+}
+// @ts-ignore
+main(api);
 
-// Start
+```
 
-<your code goes here >
+### WARNING
 
-// End
+Typescript will by default generated class definitions which takes the fully qualified name. The above typescript code will generate the following javascript code:
 
+```
+"use strict";
+// generic index.ts fil
+Object.defineProperty(exports, "__esModule", { value: true });
+var ehrcraft_form_api_1 = require("ehrcraft-form-api");
+function main(api) {
+    api.addListener("MyFormID", "OnChanged", function (id, value, parent) {
+        console.log("I was called");
+        var t = new ehrcraft_form_api_1.DvCodedText();
+        t.Value = "Test";
+    });
+}
+exports.main = main;
+// @ts-ignore
+main(api);
+
+```
+
+Note the fully qualified name for DvCodedText. This will not work in the Form Renderer. You have to remove the following:
+
+```
+// remove this
+var ehrcraft_form_api_1 = require("ehrcraft-form-api");
+
+//changes this
+var t = new ehrcraft_form_api_1.DvCodedText();
+// to
+var t = new DvCodedText();
 ```
