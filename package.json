@@ -19,7 +19,7 @@
   "license": "(MIT OR Apache-2.0)",
   "repository": {
     "type": "git",
-    "url": "http://tfgit/ehrcraft/ehrcraft-form-jsapi.git"
+    "url": "https://github.com/DIPSAS/ehrcraft-form-api"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.138",
