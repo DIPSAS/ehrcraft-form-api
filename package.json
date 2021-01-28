@@ -1,6 +1,6 @@
 {
   "name": "ehrcraft-form-api",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "description": "API/SDK for EHR Craft Forms",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,11 +22,11 @@
     "url": "https://github.com/DIPSAS/ehrcraft-form-api"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.138",
-    "@types/node": "^10.14.18",
-    "eslint": "^5.16.0",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.20.0",
-    "typescript": "^3.8.3"
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^14",
+    "eslint": "^7.18.0",
+    "ts-node": "^9",
+    "tslint": "^6",
+    "typescript": "^4"
   }
 }

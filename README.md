@@ -7,6 +7,9 @@ Warning: The library is in early beta and intended for internal use.
 ## Versions
 
 - 1.5.0 - Added callback on ctx
+- 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
+
+
 
 ## Usage
 

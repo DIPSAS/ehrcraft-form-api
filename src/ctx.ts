@@ -10,9 +10,7 @@ export interface FormViewContent {
 /**
  * Typed definition of the callback
  */
-export interface FormViewCallback {
-  (): FormViewContent;
-}
+export type FormViewCallback = () => FormViewContent;
 /**
  * The supported callback types for context
  */
@@ -29,33 +27,7 @@ export interface CTX {
    */
   addCallback(event: CtxCallBackEvent, callback: FormViewCallback): void;
 }
-/**
- * @deprecated this is not used anymore and will be removed in a later version
- */
-export class MockCTX implements CTX {
-  constructor(
-    private readonly: boolean = false,
-    private newVersion: boolean = false,
-    private myFormMode: FormMode = FormMode.Default,
-    private myPreferredLanguage: string = "no"
-  ) {}
-  addCallback(event: "OnRender", callback: FormViewCallback): void {
-    const view = callback();
-    console.log(`Mime-Type: ${view.mimeType}`);
-  }
-  isReadonly(): boolean {
-    return this.readonly;
-  }
-  isNew(): boolean {
-    return this.newVersion;
-  }
-  formMode(): FormMode {
-    return this.myFormMode;
-  }
-  preferredLanguage(): string {
-    return this.myPreferredLanguage;
-  }
-}
+
 
 export enum FormMode {
   Default = 0,
