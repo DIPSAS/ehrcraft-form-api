@@ -6,18 +6,19 @@ Warning: The library is in early beta and intended for internal use.
 
 ## Versions
 
-- 1.5.0 - Added callback on ctx
-- 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
-
-
+* 1.5.0 - Added callback on ctx
+* 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
+* 2.1.0 - Fixed attribute name value to lower case for DvBoolean, value is also acceptec in constructor for DvBoolean
 
 ## Usage
 
 The script engine only runs vanilla JS, thus we need to remove the references to this library when running insinde the form renderer.
 
+To generated vanilla JS from typescript we use the library and setup define by this Yeoman generator: https://www.npmjs.com/package/generator-ehrcraft-script 
+
 The following typescript is a boilerplate to get started.
 
-```
+```typescript
 import { API, Container } from "ehrcraft-form-api/dist/api";
 import { DvCodedText, DvDateTime, DvQuantity } from "ehrcraft-form-api";
 
@@ -26,41 +27,7 @@ function main(api: API) {
   const t = new DvCodedText();
     t.Value = "Test";
 }
-// @ts-ignore
+// THIS method is invoked from the generated script by generator-ehrcraft-script 
 main(api);
 
-```
-
-### WARNING
-
-Typescript will by default generated class definitions which takes the fully qualified name. The above typescript code will generate the following javascript code:
-
-```
-"use strict";
-// generic index.ts fil
-Object.defineProperty(exports, "__esModule", { value: true });
-var ehrcraft_form_api_1 = require("ehrcraft-form-api");
-function main(api) {
-    api.addListener("MyFormID", "OnChanged", function (id, value, parent) {
-        console.log("I was called");
-        var t = new ehrcraft_form_api_1.DvCodedText();
-        t.Value = "Test";
-    });
-}
-exports.main = main;
-// @ts-ignore
-main(api);
-
-```
-
-Note the fully qualified name for DvCodedText. This will not work in the Form Renderer. You have to remove the following:
-
-```
-// remove this
-var ehrcraft_form_api_1 = require("ehrcraft-form-api");
-
-//changes this
-var t = new ehrcraft_form_api_1.DvCodedText();
-// to
-var t = new DvCodedText();
 ```
