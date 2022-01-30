@@ -8,10 +8,6 @@ export namespace openEHR {
     }
     export namespace BasicPackage {
       export class DvBoolean extends DataValue {
-        constructor(private val?: boolean) {
-          super();
-          this.value = val;
-        }
         value?: boolean;
       }
       export class DvIdentifier extends DataValue {
