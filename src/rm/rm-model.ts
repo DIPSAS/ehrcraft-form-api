@@ -239,6 +239,16 @@ export namespace openEHR {
         constructor(public value?: number) {
           super();
         }
+        /**
+         * 
+         * @param s 1|local::at0004|string_value|
+         * @returns 
+         */
+        static Parse(s: string): DvOrdinal {
+          // return dummy value
+          return new DvOrdinal(1);
+
+        }
       }
       export class DvCount extends DvAmount<Number> {
         constructor(public magnitude?: number) {
