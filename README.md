@@ -10,6 +10,10 @@ Warning: The library is in early beta and intended for internal use.
 * 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
 * 2.1.0 - Fixed attribute name value to lower case for DvBoolean.
 
+### Adding API 2 
+
+* 3.0.0-alpha1 - adding initial support for the new API; aka api2 
+
 ## Usage
 
 The script engine only runs vanilla JS, thus we need to remove the references to this library when running insinde the form renderer.

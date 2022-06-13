@@ -1,4 +1,3 @@
-// import {API} from './api';
 export interface API {
   addListener(
     formId: string,
@@ -35,6 +34,7 @@ export interface API {
 
   getTemplateVariable(templateVariable: string): any;
 }
+
 export interface Container {
   readonly FormId: string;
   Name: string;

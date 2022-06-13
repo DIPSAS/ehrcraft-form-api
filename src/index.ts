@@ -3,6 +3,7 @@ import {openEHR} from './rm/rm-model';
 import {API} from './api';
 import {CTX} from './ctx';
 import {HTTP} from './http';
+import {API2} from './API2';
 import DvOrdinal = openEHR.RM.QuantityPackage.DvOrdinal;
 import DvText = openEHR.RM.TextPackage.DvText;
 import DvCodedText = openEHR.RM.TextPackage.DvCodedText;
@@ -43,3 +44,4 @@ export {DvUri as DvUri}
 export {API as API}
 export {CTX as CTX}
 export {HTTP as HTTP}
+export {API2 as API2}
