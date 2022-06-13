@@ -10,37 +10,64 @@ export interface Instance {
 
 }
 export interface SearchFunc {
-    (instance: Instance): Instance[];
+    (instance: Instance): boolean;
 
 }
 /**
- * @see https://dev.azure.com/dips/DIPS/_git/OpenEhr.Forms?version=GBmaster&path=%2Fsrc%2FOpenEhr.Forms%2FScripting%2FApiInstance2.cs
+ * 755245 1550 
+ * Second version of EHR Craft Form API 
+ * Now with added features to navigate the instances in the form tree.  
  */
 export interface API2 {
+    /**
+     * 
+     * @param formId the unique string representation of this element in the form. Defined by Form Designer. Could also be the name. 
+     * @param event 
+     * @param callback 
+     */
     addListener(
         formId: string,
         event: EventType,
         callback: ListenerCallback
     ): void;
     /**
-     *
-     * @param instance som du får inn fra getFieldValue
+     * Navigate to the parent node from the current instance 
+     * @param instance - an instance of an node in the Form Tree
      */
     getParent(instance: Instance): Instance | null;
+    /**
+     * Get all the children of the current node/instance
+     * @param instance 
+     */
     getChildren(instance: Instance): Instance[];
-    getInstance(): Instance;
-    getAncestor(instance: Instance): Instance[];
+    /**
+     * Walk up the tree and get ancestors matching the provided search function
+     * @param instance 
+     * @param searhcFunc 
+     */
+
+    getAncestor(instance: Instance, searhcFunc: SearchFunc): Instance[];
+    /**
+     * Find all nodes/instances matching the search function. 
+     * The search will start from FORM_ROOT and traverse the tree until all matches are found 
+     * @param searchFunc 
+     */
     find(searchFunc: SearchFunc): Instance[];
 
 
-    // Field Operations
+
     hideField(formId: string, node?: Instance): void;
     showField(formId: string, node?: Instance): void;
     clearField(formId: string, node?: Instance): void;
     resetField(formId: string, node?: Instance): void;
     enableField(formId: string, node?: Instance): void;
     disableField(formId: string, node?: Instance): void;
-    getFieldValue(formId: string, node?: Instance): any;
+    /**
+     * 
+     * @param formId the form identifier (or name) defining this node in the form 
+     * @param node the node to be used to get unique hits given multiplicity 
+     */
+    getFieldValue(formId: string, node?: Instance): Instance | null;
     setFieldValue(formId: string, value: any, node?: Instance): void;
     /**
      *
