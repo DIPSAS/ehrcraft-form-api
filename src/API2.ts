@@ -41,12 +41,12 @@ export interface API2 {
      */
     getChildren(instance: Instance): Instance[];
     /**
-     * Walk up the tree and get ancestors matching the provided search function
+     * Walk up the tree and get the first ancenstor matching the provided search function
      * @param instance 
      * @param searhcFunc 
      */
 
-    getAncestor(instance: Instance, searhcFunc: SearchFunc): Instance[];
+    getAncestor(instance: Instance, searhcFunc: SearchFunc): Instance | null;
     /**
      * Find all nodes/instances matching the search function. 
      * The search will start from FORM_ROOT and traverse the tree until all matches are found 
