@@ -53,6 +53,8 @@ export interface API {
    */
   setCodeListItems(formId:string, values:CodedItem[], parent?:Container):boolean;
   /**
+   * Set the named terminology on the given form element. 
+   * Might be used to swith terminology based on business logic in scrpit 
    * @since 2023.Q1 
    * @param formId 
    * @param terminologyName 

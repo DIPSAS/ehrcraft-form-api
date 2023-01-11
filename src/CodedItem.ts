@@ -38,6 +38,10 @@ export interface CodedItem {
   getPropertyValue(name: string): string;
 
 }
+/**
+ * Defines a property on a code item. 
+ * Properties is used in "DIPS Felles koder" to add additional information to the applications
+ */
 export interface CodedItemProperty {
   name: string;
   //datatype:"integer"|"string"|"boolean";
