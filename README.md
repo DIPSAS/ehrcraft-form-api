@@ -9,6 +9,7 @@ Warning: The library is in early beta and intended for internal use.
 * 1.5.0 - Added callback on ctx
 * 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
 * 2.1.0 - Fixed attribute name value to lower case for DvBoolean.
+* 2.3.0 - Added support for terminology and system-configuration search
 
 ## Usage
 
