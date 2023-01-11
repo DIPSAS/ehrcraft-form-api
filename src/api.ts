@@ -1,3 +1,5 @@
+import { CodedItem } from "./CodedItem";
+
 // import {API} from './api';
 export interface API {
   addListener(
@@ -34,6 +36,29 @@ export interface API {
   resetErrorMessage(formId: string, parent?: Container): void;
 
   getTemplateVariable(templateVariable: string): any;
+/**
+ * 
+ * @since 2023.Q1
+ * @param formId 
+ * @param parent 
+ * @returns the code items for the form id - an empty array if there are no coded items 
+ */
+  getCodeListItems(formId:string, parent?:Container):CodedItem[];
+
+  /**
+   * @since 2023.Q1
+   * @param formId 
+   * @param values 
+   * @param parent 
+   */
+  setCodeListItems(formId:string, values:CodedItem[], parent?:Container):boolean;
+  /**
+   * @since 2023.Q1 
+   * @param formId 
+   * @param terminologyName 
+   * @param parent 
+   */
+  setTerminology(formId:string, terminologyName:string, parent?:Container):boolean;
 }
 export interface Container {
   readonly FormId: string;

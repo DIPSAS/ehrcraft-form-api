@@ -1,4 +1,4 @@
-export interface CodevalueMapping {
+export interface CodeValueMapping {
   /**
    * 0 = is broader
    * 1 = is equal

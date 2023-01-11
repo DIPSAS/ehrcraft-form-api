@@ -1,3 +1,4 @@
+import { CodedItem } from "./CodedItem";
 import { ContextOrganization } from "./ContextOrganization";
 
 /**
@@ -9,16 +10,20 @@ export interface TerminologyService {
      *
      * @param codeListName TerminologySet terminologySet = TerminologySet.Parse("DIPS/1?subset=some_subset_name");
      * @param context the context for which the service should lookup the codeset within 
+     * @returns the code items defined by the codeListName for the given context, if none is found NULL 
      */
-    getCodeListItems(codeListName: string, context: TerminoloyContextOrganisation): string;
+    getCodeListItems(codeListName: string, context: TerminoloyContextOrganisation): CodedItem[]|null;
     /**
      * Using the logged in users user-role context to get the codelist items 
      * @param codeListName 
      */
-    getCodeListItemsByUserRoleInContext(codeListName:string):string;
+    getCodeListItemsByCurrentUserRole(codeListName:string):CodedItem[]|null;
 
 }
 
+/**
+ * Wrapper around the the context to be used when searching for terminologies 
+ */
 export interface TerminoloyContextOrganisation{
     hospitalId?:number;
     departmentId?:number;
