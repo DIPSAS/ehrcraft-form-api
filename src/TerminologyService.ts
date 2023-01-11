@@ -1,4 +1,4 @@
-import { CodedItem } from "./CodedItem";
+import { CodedItem, CodedItemExtended } from "./CodedItem";
 import { ContextOrganization } from "./ContextOrganization";
 
 /**
@@ -12,12 +12,12 @@ export interface TerminologyService {
      * @param context the context for which the service should lookup the codeset within 
      * @returns the code items defined by the codeListName for the given context, if none is found NULL 
      */
-    getCodeListItems(codeListName: string, context: TerminoloyContextOrganisation): CodedItem[]|null;
+    getCodeListItems(codeListName: string, context: TerminoloyContextOrganisation): CodedItemExtended[]|null;
     /**
      * Using the logged in users user-role context to get the codelist items 
      * @param codeListName 
      */
-    getCodeListItemsByCurrentUserRole(codeListName:string):CodedItem[]|null;
+    getCodeListItemsByCurrentUserRole(codeListName:string):CodedItemExtended[]|null;
 
 }
 

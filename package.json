@@ -1,6 +1,6 @@
 {
   "name": "ehrcraft-form-api",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "API/SDK for EHR Craft Forms (this version adds support for terminology and system conf. searc)",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
