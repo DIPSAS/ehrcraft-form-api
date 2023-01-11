@@ -1,3 +1,7 @@
+import { ContextOrganization } from "./ContextOrganization";
+import { ContextUser } from "./ContextUser";
+import { ContextVersion } from "./ContextVersion";
+
 /**
  * The currently supported mime types for rendering content
  */
@@ -15,20 +19,30 @@ export type FormViewCallback = () => FormViewContent;
  * The supported callback types for context
  */
 export type CtxCallBackEvent = "OnRender";
+
 export interface CTX {
   isReadonly(): boolean;
   isNew(): boolean;
   formMode(): FormMode;
   preferredLanguage(): string;
-  // New attributes added to get context information 
-  hospitalId?: number;
-  departmentId?: number;
-  sectionId?: number;
-  wardId?: number;
-  user?: {
-    hospitalId: number;
-    departmentId: number;
-  }
+  
+  
+  /**
+   * Information about the container which runs the form/script instance. 
+   * Might be used for debugging purposes or to add feature toggles based on versions. 
+   * @since 2023.Q1
+   */
+  version?:ContextVersion;
+  /**
+   * Defines the organisational contxt for the script environment. I.e. the organisational connections for the episode of care 
+   * @since 2023.Q1
+   */
+  organization?:ContextOrganization;  
+  /**
+   * Contextual information about the logged in user. This data might be used in the terminology and system configuration service. 
+   * @since 2023.Q1
+   */
+  user?:ContextUser;
   /**
    * Callback/EventListener on Form Context. Added to support the possibility to add a custom view type for the content
    * @param event the event type to register for
@@ -36,43 +50,11 @@ export interface CTX {
    */
   addCallback(event: CtxCallBackEvent, callback: FormViewCallback): void;
 }
-export interface Terminology {
-  LoadCodes(codesetName: string): CodedValueItem[];
-}
-export interface SystemConfiguration {
-  getSystemConfiguration(systemConfigId: number): string;
-}
+
 
 
 export enum FormMode {
   Default = 0,
   InfieldTopAlignedLabels = 1,
 }
-/**
- * @see https://dev.azure.com/dips/DIPS/_git/SmartContent-Interfaces?path=/src/Common/DIPS.SmartContent.Interface/Terminology/CodedValueItem.cs&version=GBmaster&line=11&lineEnd=12&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents 
- */
-export interface CodedValueItem {
-  Code: string;
-  Name: string;
-  Terminology: string;
-  TerminologyId: string;
-  Subset: string;
-  Version: string;
-  Mappings: CodevalueMapping[];
-  Properties: Record<string, string>;
-  GetPropertyValue(propertyTypeName: string): string;
 
-
-}
-export interface CodevalueMapping {
-  /**
-   * 0 = is broader
-   * 1 = is equal 
-   * 2 = is narrower
-   * 3 = unknown 
-   */
-  Match: 0 | 1 | 2 | 3;
-  Terminology: string;
-  CodeString: string;
-
-}
