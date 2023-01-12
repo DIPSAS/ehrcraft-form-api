@@ -1,8 +1,11 @@
 
 import {openEHR} from './rm/rm-model';
+import { DIPS } from './dips/dips-models';
 import {API} from './api';
 import {CTX} from './ctx';
 import {HTTP} from './http';
+import { TerminologyService } from './TerminologyService';
+import { SystemConfiguration } from './SystemConfiguration';
 import DvOrdinal = openEHR.RM.QuantityPackage.DvOrdinal;
 import DvText = openEHR.RM.TextPackage.DvText;
 import DvCodedText = openEHR.RM.TextPackage.DvCodedText;
@@ -21,7 +24,19 @@ import DvMultimedia = openEHR.RM.EncapsulatedPackage.DvMultimedia;
 import DvTime = openEHR.RM.DateTimePackage.DvTime;
 import DvProportion = openEHR.RM.QuantityPackage.DvProportion;
 
+import CodedItem = DIPS.Terminology.CodedItem;
+import ContextVersion = DIPS.Context.ContextVersion;
+import ContextOrganization = DIPS.Context.ContextOrganization;
+import ContextUser = DIPS.Context.ContextUser;
+import TerminologyContextOrganisation = DIPS.Terminology.TerminologyContextOrganisation;
 
+export {CodedItem as CodedItem};
+export {ContextVersion as ContextVersion}
+export {ContextOrganization as ContextOrganization}
+export {ContextUser as ContextUser}
+export {TerminologyService as TerminologyService}
+export {SystemConfiguration as SystemConfiguration}
+export {TerminologyContextOrganisation as TerminologyContextOrganisation}
 
 export {DvOrdinal as DvOrdinal}
 export {DvText as DvText}
@@ -43,3 +58,4 @@ export {DvUri as DvUri}
 export {API as API}
 export {CTX as CTX}
 export {HTTP as HTTP}
+

@@ -1,6 +1,5 @@
-import { ContextOrganization } from "./ContextOrganization";
-import { ContextUser } from "./ContextUser";
-import { ContextVersion } from "./ContextVersion";
+import { ContextOrganization, ContextUser, ContextVersion } from ".";
+
 
 /**
  * The currently supported mime types for rendering content

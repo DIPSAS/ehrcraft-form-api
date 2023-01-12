@@ -1,8 +1,9 @@
-import { CodedItem, CodedItemExtended } from "./CodedItem";
-import { ContextOrganization } from "./ContextOrganization";
+import { CodedItem, TerminologyContextOrganisation } from ".";
+
 
 /**
- * Defined as the variable "terminology"
+ * Defined as the variable "terminology" in form context. 
+ * Acts as a proxy for the terminology service in DIPS Forms. 
  */
 export interface TerminologyService {
 
@@ -12,19 +13,13 @@ export interface TerminologyService {
      * @param context the context for which the service should lookup the codeset within 
      * @returns the code items defined by the codeListName for the given context, if none is found NULL 
      */
-    getCodeListItems(codeListName: string, context: TerminoloyContextOrganisation): CodedItemExtended[]|null;
+    getCodeListItems(codeListName: string, context: TerminologyContextOrganisation): CodedItem[]|null;
     /**
      * Using the logged in users user-role context to get the codelist items 
      * @param codeListName 
      */
-    getCodeListItemsByCurrentUserRole(codeListName:string):CodedItemExtended[]|null;
+    getCodeListItemsByCurrentUserRole(codeListName:string):CodedItem[]|null;
 
 }
 
-/**
- * Wrapper around the the context to be used when searching for terminologies 
- */
-export interface TerminoloyContextOrganisation{
-    hospitalId?:number;
-    departmentId?:number;
-}
+

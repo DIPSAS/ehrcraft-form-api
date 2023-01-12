@@ -1,16 +1,16 @@
-import { ContextOrganization } from "./ContextOrganization";
+import { ContextOrganization } from ".";
+
 
 
 /**
- * Defined as the variable "config"
+ * Defined as the variable "config". 
+ * Acts as a proxy for "Systemoppsett" in DIPS. 
  */
 export interface SystemConfiguration {
-    
-    //getSystemConfiguration(systemConfigId:number, hospitalId?:number, departmentId?:number, sectionId?:number, wardId?:number, locationId?:number): string;
     /**
      * 
      * @param systemConfigId the organisation defined by the context 
-     * @param org 
+     * @param org the context for which the service will lookup the system config id 
      */
     getSystemConfiguration(systemConfigId:number, org:ContextOrganization):string;
     

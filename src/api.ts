@@ -1,4 +1,5 @@
-import { CodedItem } from "./CodedItem";
+import { CodedItem } from ".";
+
 
 // import {API} from './api';
 export interface API {
