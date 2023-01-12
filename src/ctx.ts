@@ -1,4 +1,4 @@
-import { ContextOrganization, ContextUser, ContextVersion } from ".";
+import { OrganizationContext, ContextUser, ContextVersion } from ".";
 
 
 /**
@@ -36,7 +36,7 @@ export interface CTX {
    * Defines the organisational contxt for the script environment. I.e. the organisational connections for the episode of care 
    * @since 2023.Q1
    */
-  organization?:ContextOrganization;  
+  organization?:OrganizationContext;  
   /**
    * Contextual information about the logged in user. This data might be used in the terminology and system configuration service. 
    * @since 2023.Q1

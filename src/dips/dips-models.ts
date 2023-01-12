@@ -42,13 +42,13 @@ export namespace DIPS {
             }
 
         }
-        export class CodedItemProperty {            
-            constructor(public name:string, public value:string){
+        export class CodedItemProperty {
+            constructor(public name: string, public value: string) {
 
             }
 
         }
-        export type CodeValueMapping =  {
+        export type CodeValueMapping = {
             /**
              * 0 = is broader
              * 1 = is equal
@@ -102,8 +102,9 @@ export namespace DIPS {
         }
         /**
          * DTO class for the organisational context. Used i.e. to query system configurations. 
+         * https://dev.azure.com/dips/DIPS/_git/OpenEhr.Forms?path=/src/OpenEhr.Forms/Scripting/SystemConfig/SystemConfigurationOrganization.cs&version=GBmaster
          */
-        export class ContextOrganization {
+        export class SystemConfigurationOrganization {
 
             public hospitalId?: number;
             public departmentId?: number;
@@ -116,6 +117,19 @@ export namespace DIPS {
             constructor() {
 
             }
+        }
+        /**
+         * https://dev.azure.com/dips/DIPS/_git/OpenEhr.Forms?path=/src/OpenEhr.Forms/Context/OrganizationContext.cs&_a=contents&version=GBmaster
+         */
+        export class OrganizationContext {
+            public hospitalId?: number;
+            public departmentId?: number;
+            public sectionId?: number;
+            public wardId?: number;
+            constructor(){
+                
+            }
+
         }
 
     }

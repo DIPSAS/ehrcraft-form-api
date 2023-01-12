@@ -1,4 +1,4 @@
-import { ContextOrganization } from ".";
+import { SystemConfigurationOrganization } from ".";
 
 
 
@@ -12,7 +12,7 @@ export interface SystemConfiguration {
      * @param systemConfigId the organisation defined by the context 
      * @param org the context for which the service will lookup the system config id 
      */
-    getSystemConfiguration(systemConfigId:number, org:ContextOrganization):string;
+    getSystemConfiguration(systemConfigId:number, org:SystemConfigurationOrganization):string;
     
 }
 
