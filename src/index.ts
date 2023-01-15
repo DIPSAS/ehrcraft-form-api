@@ -25,13 +25,16 @@ import DvTime = openEHR.RM.DateTimePackage.DvTime;
 import DvProportion = openEHR.RM.QuantityPackage.DvProportion;
 
 import CodedItem = DIPS.Terminology.CodedItem;
+import CodedItemProperty = DIPS.Terminology.CodedItemProperty;
 import ContextVersion = DIPS.Context.ContextVersion;
 import SystemConfigurationOrganization = DIPS.Context.SystemConfigurationOrganization;
 import ContextUser = DIPS.Context.ContextUser;
 import TerminologyContextOrganisation = DIPS.Terminology.TerminologyContextOrganisation;
 import OrganizationContext = DIPS.Context.OrganizationContext;
+import SemVer = DIPS.Context.SemVer;
 
 export {CodedItem as CodedItem};
+export {CodedItemProperty as CodedItemProperty};
 export {ContextVersion as ContextVersion}
 export {SystemConfigurationOrganization as SystemConfigurationOrganization}
 export {ContextUser as ContextUser}
@@ -39,6 +42,7 @@ export {TerminologyService as TerminologyService}
 export {SystemConfiguration as SystemConfiguration}
 export {TerminologyContextOrganisation as TerminologyContextOrganisation}
 export {OrganizationContext as OrganizationContext}
+export {SemVer as SemVer};
 
 export {DvOrdinal as DvOrdinal}
 export {DvText as DvText}
