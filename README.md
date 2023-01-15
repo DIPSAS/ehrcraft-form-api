@@ -9,7 +9,7 @@ Warning: The library is in early beta and intended for internal use.
 * 1.5.0 - Added callback on ctx
 * 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
 * 2.1.0 - Fixed attribute name value to lower case for DvBoolean.
-* 2.3.0 - Added support for terminology and system-configuration search
+* 2.3.x - Added support for terminology and system-configuration search
 
 ## Usage
 
@@ -30,5 +30,20 @@ function main(api: API) {
 }
 // THIS method is invoked from the generated script by generator-ehrcraft-script 
 main(api);
+
+```
+
+The example below illustrates the complete main function with all context objects injected. To make this work the following must be injected in the generated/compiled javascript: ```main(api,ctx,terminology,config);```
+```typescript 
+import { API, CTX, SystemConfiguration, TerminologyService } from "ehrcraft-form-api";
+const f_systolic = "<defined id of the form element for systolic blood pressure>";
+export function main(api: API, ctx: CTX, term: TerminologyService, conf: SystemConfiguration){
+
+  api.addListener(f_systolic, "OnChanged", (id, value, parent) => {
+    // do something when systolic is changed 
+  });
+
+
+}
 
 ```

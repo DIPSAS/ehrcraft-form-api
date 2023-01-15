@@ -38,15 +38,18 @@ export interface API {
 
   getTemplateVariable(templateVariable: string): any;
 /**
- * 
+ * Get the current possible code items of the instance of the form id. 
+ * To get the defined (in the form/OPT) use method getDefinedCodeItems
  * @since 2023.Q1
  * @param formId 
  * @param parent 
+ * @see getDefinedCodeItems
  * @returns the code items for the form id - an empty array if there are no coded items 
  */
   getCodeListItems(formId:string, parent?:Container):CodedItem[];
 
   /**
+   * Set a list of coded items an instance of the form id. Use parent when there are possible multiple occurences 
    * @since 2023.Q1
    * @param formId 
    * @param values 
@@ -62,6 +65,19 @@ export interface API {
    * @param parent 
    */
   setTerminology(formId:string, terminologyName:string, parent?:Container):boolean;
+
+  /**
+   * Function to load the defined coeded items on an element/field in the form. 
+   * In the form definition there is always only one definition of each form id. This is why there are no need to set the parent attribute on this. 
+   * 
+   * The function is used to get the original codelist for each element. The original/defined list might be used to reset the field. 
+   * 
+   * NOTE: This function only works for elements with local codes - not elements bound to terminologies. Use the terminology service to query these data. 
+   * 
+   * @param formId of the defined field/element   
+   * @returns the coded items defined in the form defintion for the given form id 
+   */
+  getDefinedCodeItems(formId:string): CodedItem[];
 }
 export interface Container {
   readonly FormId: string;
