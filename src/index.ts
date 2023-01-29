@@ -23,6 +23,7 @@ import DvParsable = openEHR.RM.EncapsulatedPackage.DvParsable;
 import DvMultimedia = openEHR.RM.EncapsulatedPackage.DvMultimedia;
 import DvTime = openEHR.RM.DateTimePackage.DvTime;
 import DvProportion = openEHR.RM.QuantityPackage.DvProportion;
+import DvIdentifier = openEHR.RM.BasicPackage.DvIdentifier;
 
 import CodedItem = DIPS.Terminology.CodedItem;
 import CodedItemProperty = DIPS.Terminology.CodedItemProperty;
@@ -46,6 +47,7 @@ export {SemVer as SemVer};
 
 export {DvOrdinal as DvOrdinal}
 export {DvText as DvText}
+export {DvIdentifier as DvIdentifier} 
 export {DvCodedText as DvCodedText}
 export {DvCodePhrase as DvCodePhrase}
 export {DvQuantity as DvQuantity}
