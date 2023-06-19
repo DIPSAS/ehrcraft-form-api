@@ -35,4 +35,4 @@ main(api);
 
 
 ## Questions and/or feature requests?
-Please create an [issue](https://github.com/DIPSAS/ehrcraft-form-apiissues)
+Please create an [issue](https://github.com/DIPSAS/ehrcraft-form-api/issues)
