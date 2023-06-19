@@ -32,3 +32,7 @@ function main(api: API) {
 main(api);
 
 ```
+
+
+## Questions and/or feature requests?
+Please create an [issue](https://github.com/DIPSAS/ehrcraft-form-apiissues)
