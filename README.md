@@ -10,6 +10,7 @@ Warning: The library is in early beta and intended for internal use.
 * 2.0.0 - Attribute names from upper camelcase to lower camelcase. 
 * 2.1.0 - Fixed attribute name value to lower case for DvBoolean.
 * 2.3.x - Added support for terminology and system-configuration search
+* 2.4.x - Added support for lab 
 
 ## Usage
 

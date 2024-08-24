@@ -6,6 +6,7 @@ import {CTX} from './ctx';
 import {HTTP} from './http';
 import { TerminologyService } from './TerminologyService';
 import { SystemConfiguration } from './SystemConfiguration';
+import { Lab } from './Lab';
 import DvOrdinal = openEHR.RM.QuantityPackage.DvOrdinal;
 import DvText = openEHR.RM.TextPackage.DvText;
 import DvCodedText = openEHR.RM.TextPackage.DvCodedText;
@@ -44,6 +45,8 @@ export {SystemConfiguration as SystemConfiguration}
 export {TerminologyContextOrganisation as TerminologyContextOrganisation}
 export {OrganizationContext as OrganizationContext}
 export {SemVer as SemVer};
+
+export {Lab as Lab}
 
 export {DvOrdinal as DvOrdinal}
 export {DvText as DvText}
