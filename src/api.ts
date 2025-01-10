@@ -108,11 +108,13 @@ export type CallbackType = (
 ) => Function;
 /**
  * The type of events supported by the API. This is used when setting up addListener functions.
+ * OnClick was added januar 2025 and should be used for Generic Buttons
  */
 export type EventType =
   | "OnFormInitialized"
   | "OnChanged"
   | "OnChildAdded"
-  | "OnChildRemoved";
+  | "OnChildRemoved"
+  | "OnClick";
 
 

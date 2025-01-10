@@ -12,6 +12,7 @@ Warning: The library is in early beta and intended for internal use.
 * 2.3.x - Added support for terminology and system-configuration search
 * 2.4.x - Added support for lab 
 * 2.5.x - Added support for api2
+* 2.6.x - Added support for `OnClick` event for generic buttons
 
 ## Usage
 
